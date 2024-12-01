@@ -16,6 +16,7 @@ public enum SubType {
     TRAP("Trap", SubTypeSet.SpellType),
 
     // Battle subtypes
+    CONTEST("Contest", SubTypeSet.BattleType, true), // Friendship: the Gathering
     SIEGE("Siege", SubTypeSet.BattleType),
 
     // 205.3i: Lands have their own unique set of subtypes; these subtypes are called land types.
@@ -67,7 +68,9 @@ public enum SubType {
     // A
     ADVISOR("Advisor", SubTypeSet.CreatureType),
     AETHERBORN("Aetherborn", SubTypeSet.CreatureType),
+    ALICORN("Alicorn", SubTypeSet.CreatureType, true), //Friendship: the Gathering
     ALIEN("Alien", SubTypeSet.CreatureType),
+    ALLIGATOR("Alligator", SubTypeSet.CreatureType, true), // Friendship: the Gathering
     ALLY("Ally", SubTypeSet.CreatureType),
     ANGEL("Angel", SubTypeSet.CreatureType),
     ANTELOPE("Antelope", SubTypeSet.CreatureType),
@@ -121,6 +124,7 @@ public enum SubType {
     CAT("Cat", SubTypeSet.CreatureType),
     CENTAUR("Centaur", SubTypeSet.CreatureType),
     CEREAN("Cerean", SubTypeSet.CreatureType, true), // Star Wars
+    CHILD("Child", SubTypeSet.CreatureType, true), //Friendship: the Gathering
     CHIMERA("Chimera", SubTypeSet.CreatureType),
     CHISS("Chiss", SubTypeSet.CreatureType, true),
     CITIZEN("Citizen", SubTypeSet.CreatureType),
@@ -152,6 +156,7 @@ public enum SubType {
     DJINN("Djinn", SubTypeSet.CreatureType),
     DOCTOR("Doctor", SubTypeSet.CreatureType),
     DOG("Dog", SubTypeSet.CreatureType),
+    DONKEY("Donkey", SubTypeSet.CreatureType, true), // Friendship: the Gathering
     DRAGON("Dragon", SubTypeSet.CreatureType),
     DRAKE("Drake", SubTypeSet.CreatureType),
     DREADNOUGHT("Dreadnought", SubTypeSet.CreatureType),
@@ -303,6 +308,7 @@ public enum SubType {
     ORTOLAN("Ortolan", SubTypeSet.CreatureType, true),
     OTTER("Otter", SubTypeSet.CreatureType),
     OUPHE("Ouphe", SubTypeSet.CreatureType),
+    OWL("Owl", SubTypeSet.CreatureType, true), //Friendship: the Gathering
     OX("Ox", SubTypeSet.CreatureType),
     OYSTER("Oyster", SubTypeSet.CreatureType),
     // P
@@ -319,6 +325,7 @@ public enum SubType {
     PINCHER("Pincher", SubTypeSet.CreatureType),
     PIRATE("Pirate", SubTypeSet.CreatureType),
     PLANT("Plant", SubTypeSet.CreatureType),
+    PONY("Pony", SubTypeSet.CreatureType, true), //Friendship: the Gathering
     PORCUPINE("Porcupine", SubTypeSet.CreatureType),
     POSSUM("Possum", SubTypeSet.CreatureType),
     PRAETOR("Praetor", SubTypeSet.CreatureType),
@@ -400,6 +407,7 @@ public enum SubType {
     THRULL("Thrull", SubTypeSet.CreatureType),
     TIEFLING("Tiefling", SubTypeSet.CreatureType),
     TIME_LORD("Time Lord", SubTypeSet.CreatureType),
+    TORTOISE("Tortoise", SubTypeSet.CreatureType, true), // Friendship: the Gathering
     TOY("Toy", SubTypeSet.CreatureType),
     TRANDOSHAN("Trandoshan", SubTypeSet.CreatureType, true), // Star Wars
     TREEFOLK("Treefolk", SubTypeSet.CreatureType),
@@ -439,9 +447,11 @@ public enum SubType {
     WRAITH("Wraith", SubTypeSet.CreatureType),
     WURM("Wurm", SubTypeSet.CreatureType),
     // Y
+    YAK("Yak", SubTypeSet.CreatureType, true), // Friendship: the Gathering
     YETI("Yeti", SubTypeSet.CreatureType),
     // Z
     ZABRAK("Zabrak", SubTypeSet.CreatureType, true), // Star Wars
+    ZEBRA("Zebra", SubTypeSet.CreatureType, true), // Friendship: the Gathering
     ZOMBIE("Zombie", SubTypeSet.CreatureType),
     ZUBERA("Zubera", SubTypeSet.CreatureType),
     // Planeswalker
