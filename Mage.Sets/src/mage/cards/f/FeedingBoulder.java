@@ -13,7 +13,7 @@ import mage.target.common.TargetArtifactPermanent;
 public final class FeedingBoulder extends CardImpl{
 	
 	public FeedingBoulder(UUID ownerId, CardSetInfo setInfo) {
-		super(ownerId, setInfo, new CardType[] {CardType.INSTANT}, "C");
+		super(ownerId, setInfo, new CardType[] {CardType.INSTANT}, "{C}");
 		
 		//Target artifact's controller creates two food tokens
 		this.getSpellAbility().addEffect(new CreateTokenControllerTargetEffect(new FoodToken(), 2, false));
