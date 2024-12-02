@@ -3,6 +3,7 @@ package mage.cards.f;
 import java.util.UUID;
 
 import mage.abilities.effects.common.CreateTokenControllerTargetEffect;
+import mage.abilities.effects.common.InfoEffect;
 import mage.cards.Card;
 import mage.cards.CardImpl;
 import mage.cards.CardSetInfo;
@@ -16,6 +17,7 @@ public final class FeedingBoulder extends CardImpl{
 		super(ownerId, setInfo, new CardType[] {CardType.INSTANT}, "{C}");
 		
 		//Target artifact's controller creates two food tokens
+		this.getSpellAbility().addEffect(new InfoEffect("Target artifact"));
 		this.getSpellAbility().addEffect(new CreateTokenControllerTargetEffect(new FoodToken(), 2, false));
 		this.getSpellAbility().addTarget(new TargetArtifactPermanent());
 	}
