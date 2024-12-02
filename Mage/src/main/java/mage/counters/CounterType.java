@@ -54,6 +54,7 @@ public enum CounterType {
     CURRENCY("currency"),
     DEATH("death"),
     DEATHTOUCH("deathtouch"),
+    DEFENDER("defender"),
     DEFENSE("defense"),
     DELAY("delay"),
     DEPLETION("depletion"),
@@ -313,6 +314,8 @@ public enum CounterType {
                 return new BoostCounter(-2, -2, amount);
             case DEATHTOUCH:
                 return new AbilityCounter(DeathtouchAbility.getInstance(), amount);
+            case DEFENDER:
+                return new AbilityCounter(DefenderAbility.getInstance(), amount);
             case DOUBLE_STRIKE:
                 return new AbilityCounter(DoubleStrikeAbility.getInstance(), amount);
             case EXALTED:
