@@ -1,7 +1,6 @@
 package mage.cards.k;
 
 import mage.MageInt;
-import mage.MageObject;
 import mage.abilities.Ability;
 import mage.abilities.LoyaltyAbility;
 import mage.abilities.common.SimpleStaticAbility;
@@ -12,14 +11,15 @@ import mage.abilities.condition.common.SourceHasCounterCondition;
 import mage.abilities.decorator.ConditionalContinuousEffect;
 import mage.abilities.dynamicvalue.DynamicValue;
 import mage.abilities.effects.Effect;
-import mage.abilities.effects.OneShotEffect;
+import mage.abilities.effects.common.DrawCardSourceControllerEffect;
 import mage.abilities.effects.common.GetEmblemEffect;
+import mage.abilities.effects.common.TapTargetEffect;
 import mage.abilities.effects.common.continuous.BecomesCreatureSourceEffect;
+import mage.abilities.effects.common.counter.AddCountersTargetEffect;
 import mage.abilities.effects.keyword.SurveilEffect;
 import mage.abilities.hint.common.MyTurnHint;
 import mage.abilities.keyword.HexproofAbility;
 import mage.abilities.keyword.NinjutsuAbility;
-import mage.cards.Card;
 import mage.cards.CardImpl;
 import mage.cards.CardSetInfo;
 import mage.constants.*;
@@ -28,8 +28,7 @@ import mage.game.Game;
 import mage.game.command.emblems.KaitoBaneOfNightmaresEmblem;
 import mage.game.permanent.token.TokenImpl;
 import mage.players.Player;
-import mage.target.common.TargetCardInGraveyard;
-import mage.util.CardUtil;
+import mage.target.common.TargetCreaturePermanent;
 import mage.watchers.common.PlayerLostLifeWatcher;
 
 import java.util.UUID;
@@ -59,7 +58,16 @@ public class KaitoBaneOfNightmares extends CardImpl {
         this.addAbility(new LoyaltyAbility(new GetEmblemEffect(new KaitoBaneOfNightmaresEmblem()), 1));
 
         Ability ability = new LoyaltyAbility(new SurveilEffect(2, false), 0);
-        ability.addEffect(new KaitoBaneOfNightmaresDrawEffect().concatBy(". Then"));
+        ability.addEffect(new DrawCardSourceControllerEffect(KaitoBaneOfNightmaresDynamicValue.instance).setText(
+                ". Then draw a card for each opponent who lost life this turn"));
+        this.addAbility(ability);
+
+        Ability ability2 = new LoyaltyAbility(new TapTargetEffect(), -2);
+        ability2.addEffect(new AddCountersTargetEffect(CounterType.STUN.createInstance(2)));
+        ability2.addTarget(new TargetCreaturePermanent());
+        this.addAbility(ability2);
+
+
     }
 
     private KaitoBaneOfNightmares(final KaitoBaneOfNightmares card){
@@ -129,40 +137,5 @@ enum KaitoBaneOfNightmaresDynamicValue implements DynamicValue {
     @Override
     public String toString() {
         return "1";
-    }
-}
-
-class KaitoBaneOfNightmaresDrawEffect extends OneShotEffect {
-
-    KaitoBaneOfNightmaresDrawEffect() {
-        super(Outcome.Exile);
-        staticText = "exile a card from a graveyard";
-    }
-
-    private KaitoBaneOfNightmaresDrawEffect(final KaitoBaneOfNightmaresDrawEffect effect) {
-        super(effect);
-    }
-
-    @Override
-    public KaitoBaneOfNightmaresDrawEffect copy() {
-        return new KaitoBaneOfNightmaresDrawEffect(this);
-    }
-
-    @Override
-    public boolean apply(Game game, Ability source) {
-        Player controller = game.getPlayer(source.getControllerId());
-        if (controller != null) {
-            TargetCardInGraveyard target = new TargetCardInGraveyard();
-            target.withNotTarget(true);
-            controller.choose(outcome, target, source, game);
-            Card card = game.getCard(target.getFirstTarget());
-            if (card != null) {
-                UUID exileId = CardUtil.getExileZoneId(game, source.getSourceId(), source.getSourceObjectZoneChangeCounter());
-                MageObject sourceObject = source.getSourceObject(game);
-                String exileName = sourceObject == null ? null : sourceObject.getIdName();
-                return controller.moveCardsToExile(card, source, game, true, exileId, exileName);
-            }
-        }
-        return false;
     }
 }
