@@ -48,6 +48,7 @@ public class KaitoBaneOfNightmares extends CardImpl {
         // Ninjutsu {1}{U}{B}
         this.addAbility(new NinjutsuAbility("{1}{U}{B}"));
 
+        // During your turn, as long as Kaito has one or more loyalty counter on him, ...
         this.addAbility(new SimpleStaticAbility(new ConditionalContinuousEffect(
                 new BecomesCreatureSourceEffect(
                         new KaitoBaneOfNightmaresToken(), null, Duration.WhileOnBattlefield
@@ -58,7 +59,7 @@ public class KaitoBaneOfNightmares extends CardImpl {
         this.addAbility(new LoyaltyAbility(new GetEmblemEffect(new KaitoBaneOfNightmaresEmblem()), 1));
 
         Ability ability = new LoyaltyAbility(new SurveilEffect(2, false), 0);
-        ability.addEffect(new KayaSpiritsJusticeExileEffect().concatBy(". Then"));
+        ability.addEffect(new KaitoBaneOfNightmaresDrawEffect().concatBy(". Then"));
     }
 
     private KaitoBaneOfNightmares(final KaitoBaneOfNightmares card){
